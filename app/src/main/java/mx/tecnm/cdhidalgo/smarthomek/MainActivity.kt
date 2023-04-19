@@ -3,10 +3,10 @@ package mx.tecnm.cdhidalgo.smarthomek
 import android.content.ContextParams
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -63,5 +63,4 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, "Bienvenido ${etUsername.text.toString()}", Toast.LENGTH_SHORT).show()
         startActivity(Intent(this, MainActivity2::class.java))
     }
-
 }
