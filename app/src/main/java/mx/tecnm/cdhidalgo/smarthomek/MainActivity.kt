@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
                     res -> respuesta(res)
             },
             {
-                Toast.makeText(this, "Error en la peticion", Toast.LENGTH_SHORT).show()
+                err -> Toast.makeText(this, "Error en la peticion: "+err, Toast.LENGTH_SHORT).show()
             })
 
         MySingleton.getInstance(applicationContext).addToRequestQueue(peticion)

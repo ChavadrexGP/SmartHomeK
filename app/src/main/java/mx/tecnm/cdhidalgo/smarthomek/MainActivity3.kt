@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.JsonObjectRequest
 import org.json.JSONObject
 
 class MainActivity3 : AppCompatActivity() {
@@ -40,7 +41,7 @@ class MainActivity3 : AppCompatActivity() {
     }
 
     private fun guardar(id: String?) {
-        val url = Uri.parse(Config.URL+"/sensores/"+id)
+        val url = Uri.parse(Config.URL+"sensores/"+id)
             .buildUpon()
             .build().toString()
 
@@ -49,14 +50,14 @@ class MainActivity3 : AppCompatActivity() {
         dato.put("name", etSensorEdit.text.toString())
         dato.put("value", etValueEdit.text.toString())
 
-        val peticion = object: JsonArrayRequest(
-            Method.PUT, url, null,
+        val peticion = object: JsonObjectRequest(
+            Method.PUT, url, dato,
             {
                 Toast.makeText(this, "Registro modificado", Toast.LENGTH_SHORT).show()
                 startActivity(Intent(this, MainActivity2::class.java))
             },
             {
-                Toast.makeText(this, "Error en la peticion", Toast.LENGTH_SHORT).show()
+                err->Toast.makeText(this, "Error en la peticion"+err, Toast.LENGTH_SHORT).show()
             }
         ){
             override fun getHeaders(): MutableMap<String, String> {

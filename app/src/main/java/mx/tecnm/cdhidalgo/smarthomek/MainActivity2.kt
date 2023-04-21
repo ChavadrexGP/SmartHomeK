@@ -53,7 +53,7 @@ class MainActivity2 : AppCompatActivity() {
     }
 
     private fun agregar() {
-        val url = Uri.parse(Config.URL+"/sensores")
+        val url = Uri.parse(Config.URL+"sensores")
             .buildUpon()
             .build().toString()
 
@@ -67,7 +67,7 @@ class MainActivity2 : AppCompatActivity() {
                 Toast.makeText(this, "Registro agregado", Toast.LENGTH_SHORT).show()
             },
             {
-                Toast.makeText(this, "Error en la peticion", Toast.LENGTH_SHORT).show()
+                err->Toast.makeText(this, "Error en la peticion"+err, Toast.LENGTH_SHORT).show()
             }){
             override fun getHeaders(): MutableMap<String, String> {
                 val header: MutableMap<String, String> = HashMap()
@@ -80,7 +80,7 @@ class MainActivity2 : AppCompatActivity() {
     }
 
     private fun llenar() {
-        val url = Uri.parse(Config.URL+"/sensores")
+        val url = Uri.parse(Config.URL+"sensores")
             .buildUpon()
             .build().toString()
         val peticion = object: JsonArrayRequest(Method.GET, url, null,
@@ -88,7 +88,7 @@ class MainActivity2 : AppCompatActivity() {
                     res -> llenarRespuesta(res)
             },
             {
-                Toast.makeText(this, "Error en la peticion", Toast.LENGTH_SHORT).show()
+                err->Toast.makeText(this, "Error en la peticion"+err, Toast.LENGTH_SHORT).show()
             }
         ){
             override fun getHeaders(): MutableMap<String, String> {
@@ -135,10 +135,10 @@ class MainActivity2 : AppCompatActivity() {
     }
 
     private fun eliminar(id: String?) {
-        val url = Uri.parse(Config.URL+"/sensores/"+id)
+        val url = Uri.parse(Config.URL+"sensores/"+id)
             .buildUpon()
             .build().toString()
-        val peticion = object: JsonArrayRequest(Method.DELETE, url, null,
+        val peticion = object: JsonObjectRequest(Method.DELETE, url, null,
             {
                 Toast.makeText(this, "Registro eliminado", Toast.LENGTH_SHORT).show()
             },
